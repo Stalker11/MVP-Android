@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="portrait_acitivity_main_left_right_paddings">12dp</dimen>
+</resources>

@@ -4,7 +4,7 @@ interface BasePresenter<V : BaseView> {
     fun attachView(view:V)
     fun isReady()
     fun detachView()
-    fun destroyView()
+    fun unsubscribe()
 }
 
 

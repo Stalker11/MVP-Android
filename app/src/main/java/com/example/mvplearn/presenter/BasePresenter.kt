@@ -17,7 +17,7 @@ abstract class BasePresenter<T : BaseView> : BasePresenter<T> {
 
     fun getView() = { mView }
 
-    override fun destroyView() {
+    override fun unsubscribe() {
         //Here can be cancelled working Rx or coroutine thread
     }
 }

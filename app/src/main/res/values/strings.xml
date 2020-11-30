@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MVPLearn</string>
+    <string name="first_name">First name</string>
+    <string name="second_name">Second name</string>
+    <string name="btn_save">Save</string>
+    <string name="landscape_text">Landscape layout was changed</string>
 </resources>
