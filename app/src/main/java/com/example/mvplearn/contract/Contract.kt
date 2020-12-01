@@ -12,3 +12,5 @@ interface Contract {
       fun save(user: User)
     }
 }
+
+
