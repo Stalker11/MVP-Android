@@ -24,9 +24,9 @@ class PresenterUnitTest {
     @Test
     fun testPresenter() {
         mockView?.let { presenter?.attachView(it) }
-     //   then(mockView).should()?.saveSuccess()
         presenter?.save(User("w","w"))
-        verify(mockView)?.saveSuccess()
+        then(mockView).should()?.saveSuccess()
+        //verify(mockView)?.saveSuccess()
     }
 
     @After
