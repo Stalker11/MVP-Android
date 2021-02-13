@@ -7,9 +7,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.mockito.BDDMockito.then
-import org.mockito.Mock
 import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
 
 class PresenterUnitTest {
     private var presenter: FirstViewPresenter? = null
@@ -23,9 +21,9 @@ class PresenterUnitTest {
 
     @Test
     fun testPresenter() {
-        mockView?.let { presenter?.attachView(it) }
-        presenter?.save(User("w","w"))
-        then(mockView).should()?.saveSuccess()
+        mockView.let { presenter?.attachView(it) }
+        presenter?.save(User("","w"))
+        then(mockView).should()?.error("Names cannot be empty")
         //verify(mockView)?.saveSuccess()
     }
 

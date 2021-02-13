@@ -1,6 +1,8 @@
 package com.example.mvplearn
 
+import android.content.DialogInterface
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.example.mvplearn.contract.Contract
 import com.example.mvplearn.databinding.ActivityMainBinding
 import com.example.mvplearn.models.User
@@ -10,6 +12,7 @@ import com.example.mvplearn.ui.BaseActivity
 class MainActivity : BaseActivity(), Contract.FirstView {
     lateinit var firstPresenter: FirstViewPresenter
     lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -27,7 +30,7 @@ class MainActivity : BaseActivity(), Contract.FirstView {
     }
 
     override fun saveSuccess() {
-        showToast("${this.firstPresenter.javaClass.simpleName} saved data success")
+        showDialog("${this.firstPresenter.javaClass.simpleName} saved data success")
     }
 
     override fun error() {
@@ -35,12 +38,24 @@ class MainActivity : BaseActivity(), Contract.FirstView {
     }
 
     override fun error(message: String) {
-        showToast("${this.firstPresenter.javaClass.simpleName} $message")
+        showDialog("${this.firstPresenter.javaClass.simpleName} $message")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         firstPresenter.unsubscribe()
-        firstPresenter.detachView() //Can reproduce null pointer exception
+        firstPresenter.detachView()
+
     }
+   fun showDialog(errorMessage:String){
+       val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+       builder.setMessage(errorMessage)
+           .setCancelable(true)
+           .setPositiveButton(R.string.ok,
+               DialogInterface.OnClickListener { dialog, id -> dialog.dismiss() })
+
+       val alert: AlertDialog = builder.create()
+       alert.setOnCancelListener { }
+       alert.show()
+   }
 }
